@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-gitops-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: gitops-nginx.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-gitops-service
+            port:
+              number: 80
